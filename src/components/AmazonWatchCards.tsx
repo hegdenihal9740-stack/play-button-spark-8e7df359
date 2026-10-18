@@ -1,6 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { useState } from 'react';
-import { FlipkartDetails } from './FlipkartDetails';
 import { ScanLine, Star } from 'lucide-react';
 import { toast } from 'sonner';
 import { cart, prices } from '@/lib/cart';
@@ -29,7 +27,6 @@ export function WatchProductCard({ tone }: { tone: WatchTone }) {
   const w = watches.find((x) => x.id === tone);
   if (!w) return null;
   const tomorrow = new Date(Date.now() + 86400000).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
-  const [more, setMore] = useState(false);
   const m = meta[w.id];
   const price = prices[w.id];
   const off = Math.round((1 - price / m.list) * 100);
@@ -51,9 +48,8 @@ export function WatchProductCard({ tone }: { tone: WatchTone }) {
         <button type="button" className="az-add" onClick={() => { cart.add(w.id); toast.success(`${w.name} added to cart`); }}>Add to bag</button>
         <div className="az-links">
           <Link to="/watches/$watchId" params={{ watchId: w.id }} search={{ tryon: true }} className="az-tryon"><ScanLine size={14} /> Try on</Link>
-          <button type="button" className="az-more" onClick={() => setMore(true)}>Details</button>
+          <Link to="/shop/$watchId" params={{ watchId: w.id }} className="az-more">Details</Link>
         </div>
-        <FlipkartDetails tone={w.id} open={more} onOpenChange={setMore} />
       </div>
     </article>
   );

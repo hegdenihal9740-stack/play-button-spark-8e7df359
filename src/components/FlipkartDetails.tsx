@@ -42,8 +42,10 @@ import { watches, type WatchTone } from '@/lib/watches';
 const usd = (n: number) => n.toLocaleString('en-US');
 
 export function FlipkartDetails({
-  tone, open, onOpenChange,
-}: { tone: WatchTone; open: boolean; onOpenChange: (o: boolean) => void }) {
+  tone, open, onOpenChange, asPage = false, onBuy,
+}: { tone: WatchTone; open: boolean; onOpenChange: (o: boolean) => void; asPage?: boolean; onBuy?: (id: WatchTone) => void }) {
+  const Title = asPage ? 'h1' : DialogTitle;
+  const Desc = asPage ? 'p' : DialogDescription;
   const [pick, setPick] = useState<WatchTone | null>(null);
   const active = pick ?? tone;
   const m = cardMeta[active];
@@ -84,8 +86,7 @@ export function FlipkartDetails({
   useEffect(() => { setIdx(0); setZoom(false); setFull(false); }, [active]);
   return (
     <>
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="fk-panel">
+    {(() => { const body = (
         <div className="fk-grid">
           <div className="fk-left">
             <span className="fk-index">{String(idx + 1).padStart(2, '0')} / {String(imgs.length).padStart(2, '0')}</span>
@@ -96,7 +97,7 @@ export function FlipkartDetails({
           </div>
           <div className="fk-right">
             <p className="fk-brand">Private Flight · {w.finish}</p>
-            <DialogTitle className="fk-title">{w.name}</DialogTitle>
+            <Title className="fk-title">{w.name}</Title>
             <p className="fk-subtitle">{w.details[0]} · analog automatic</p>
             <div className="fk-rating-row">
               <span className="fk-rating-chip">{m.rating} <Star size={11} fill="currentColor" /></span>
@@ -134,7 +135,7 @@ export function FlipkartDetails({
               ))}</div>
             </div>
             <div className="fk-actions">
-              <button type="button" className="fk-buy" onClick={() => { cart.add(w.id); toast.success('Proceeding to checkout'); onOpenChange(false); }}><Zap size={16} /> Buy now</button>
+              <button type="button" className="fk-buy" onClick={() => { if (onBuy) { onBuy(w.id); return; } cart.add(w.id); toast.success('Proceeding to checkout'); onOpenChange(false); }}><Zap size={16} /> Buy now</button>
               <button type="button" className="fk-cart" onClick={() => { cart.add(w.id); toast.success(`${w.name} (${dial}) added to cart`); }}><ShoppingCart size={16} /> Add to bag</button>
             </div>
             <div className="fk-perks">
@@ -144,7 +145,7 @@ export function FlipkartDetails({
             </div>
             <div className="fk-section">
               <h4>The story</h4>
-              <DialogDescription className="fk-desc">{w.description}</DialogDescription>
+              <Desc className="fk-desc">{w.description}</Desc>
             </div>
             <div className="fk-section">
               <h4>Highlights</h4>
@@ -176,8 +177,7 @@ export function FlipkartDetails({
             </div>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      ); return asPage ? <div className="fk-panel fk-page">{body}</div> : <Dialog open={open} onOpenChange={onOpenChange}><DialogContent className="fk-panel">{body}</DialogContent></Dialog>; })()}
     <Dialog open={full} onOpenChange={(o) => { setFull(o); setZoom(false); }}>
       <DialogContent className="fk-full">
         <DialogTitle className="sr-only">{w.name} full image view</DialogTitle>
