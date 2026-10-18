@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ShopWatchIdRouteImport } from './routes/shop.$watchId'
 import { Route as WatchesWatchIdRouteImport } from './routes/watches.$watchId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +26,19 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopWatchIdRoute = ShopWatchIdRouteImport.update({
+  id: '/shop/$watchId',
+  path: '/shop/$watchId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WatchesWatchIdRoute = WatchesWatchIdRouteImport.update({
@@ -38,34 +50,61 @@ const WatchesWatchIdRoute = WatchesWatchIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/checkout': typeof CheckoutRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/shop/$watchId': typeof ShopWatchIdRoute
   '/watches/$watchId': typeof WatchesWatchIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/checkout': typeof CheckoutRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/shop/$watchId': typeof ShopWatchIdRoute
   '/watches/$watchId': typeof WatchesWatchIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/checkout': typeof CheckoutRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/shop/$watchId': typeof ShopWatchIdRoute
   '/watches/$watchId': typeof WatchesWatchIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/reset-password' | '/watches/$watchId'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/checkout'
+    | '/reset-password'
+    | '/shop/$watchId'
+    | '/watches/$watchId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/watches/$watchId'
-  id: '__root__' | '/' | '/auth' | '/reset-password' | '/watches/$watchId'
+  to:
+    | '/'
+    | '/auth'
+    | '/checkout'
+    | '/reset-password'
+    | '/shop/$watchId'
+    | '/watches/$watchId'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/checkout'
+    | '/reset-password'
+    | '/shop/$watchId'
+    | '/watches/$watchId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  CheckoutRoute: typeof CheckoutRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ShopWatchIdRoute: typeof ShopWatchIdRoute
   WatchesWatchIdRoute: typeof WatchesWatchIdRoute
 }
 
@@ -85,11 +124,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/$watchId': {
+      id: '/shop/$watchId'
+      path: '/shop/$watchId'
+      fullPath: '/shop/$watchId'
+      preLoaderRoute: typeof ShopWatchIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/watches/$watchId': {
@@ -105,7 +158,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  CheckoutRoute: CheckoutRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ShopWatchIdRoute: ShopWatchIdRoute,
   WatchesWatchIdRoute: WatchesWatchIdRoute,
 }
 export const routeTree = rootRouteImport
