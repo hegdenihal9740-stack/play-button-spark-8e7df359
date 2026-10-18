@@ -993,3 +993,60 @@ body:has(.watch-page) { background: var(--midnight-sky); }
 .fk-feat-circle { width: 76px; height: 76px; border-radius: 50%; border: 2px solid var(--fk-ink); background-size: 320%; background-color: var(--fk-bg); box-shadow: 0 6px 16px -8px oklch(0 0 0 / 35%); }
 @media (min-width: 768px) { .fk-feat-circle { width: 96px; height: 96px; } }
 .fk-full-stage .fk-feat { max-width: min(80vh, 100%); }
+
+/* Shop page, header, mobile login and checkout */
+body:has(.shop-page) .customer-account-access { display: none; }
+.shop-page { min-height: 100vh; background: var(--fk-bg); color: var(--fk-ink); font-family: "Karla", sans-serif; }
+.shop-page .fk-page { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+.shop-header { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .75rem 1rem; background: var(--fk-bg); border-bottom: 1px solid var(--fk-line); }
+.shop-brand { font-family: "Cormorant Garamond", serif; font-size: 1.4rem; letter-spacing: .12em; text-transform: uppercase; color: var(--fk-gold); }
+.shop-right { display: flex; align-items: center; gap: .5rem; }
+.shop-icon-btn { position: relative; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--fk-line); color: var(--fk-ink); background: transparent; }
+.shop-icon-btn:hover { color: var(--fk-gold); border-color: var(--fk-gold); }
+.shop-count { position: absolute; top: -6px; right: -6px; min-width: 1.1rem; height: 1.1rem; border-radius: 999px; background: var(--fk-gold); color: var(--fk-bg); font-size: .65rem; display: grid; place-items: center; }
+.shop-login-link { display: inline-flex; align-items: center; gap: .4rem; padding: .55rem .9rem; border: 1px solid var(--fk-gold); color: var(--fk-gold); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; background: transparent; white-space: nowrap; }
+.shop-login-link:hover { background: var(--fk-gold); color: var(--fk-bg); }
+.shop-menu-wrap { position: relative; }
+.shop-menu { position: absolute; top: calc(100% + .5rem); left: 0; min-width: 15rem; padding: 1rem; background: var(--fk-bg); border: 1px solid var(--fk-line); box-shadow: 0 20px 40px -20px oklch(0 0 0 / .6); }
+.shop-menu-label { display: flex; align-items: center; gap: .4rem; font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; color: var(--fk-gold); margin-bottom: .75rem; }
+.shop-contacts { display: flex; gap: .75rem; }
+.shop-contact { display: flex; flex-direction: column; align-items: center; gap: .3rem; font-size: .68rem; color: var(--fk-muted); }
+.shop-contact svg { width: 2.6rem; height: 2.6rem; padding: .6rem; border: 1px solid var(--fk-line); border-radius: 999px; color: var(--fk-ink); }
+.shop-contact:hover svg { color: var(--fk-gold); border-color: var(--fk-gold); }
+.shop-login { background: var(--fk-bg); color: var(--fk-ink); border: 1px solid var(--fk-line); display: grid; gap: .8rem; max-width: 24rem; }
+.shop-login-title { font-family: "Cormorant Garamond", serif; font-size: 1.8rem; }
+.shop-login-sub { color: var(--fk-muted); font-size: .85rem; }
+.shop-tabs { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--fk-line); }
+.shop-tabs button { padding: .55rem; color: var(--fk-muted); background: transparent; }
+.shop-tabs button.is-active { background: var(--fk-gold); color: var(--fk-bg); }
+.shop-input { width: 100%; padding: .7rem .8rem; background: var(--fk-soft); color: var(--fk-ink); border: 1px solid var(--fk-line); outline: none; font: inherit; }
+.shop-input:focus { border-color: var(--fk-gold); }
+.shop-phone { display: flex; border: 1px solid var(--fk-line); background: var(--fk-soft); }
+.shop-phone span { padding: .7rem .8rem; color: var(--fk-muted); border-right: 1px solid var(--fk-line); }
+.shop-phone input { flex: 1; padding: .7rem .8rem; background: transparent; color: var(--fk-ink); outline: none; }
+.shop-login-btn { width: 100%; justify-content: center; }
+.co-grid { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 4rem; display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .co-grid { grid-template-columns: 1fr 320px; align-items: start; } }
+.co-steps { display: grid; gap: 1rem; }
+.co-step { border: 1px solid var(--fk-line); padding: 1rem; }
+.co-step h2 { display: flex; align-items: center; gap: .7rem; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fk-muted); }
+.co-step h2 span { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; background: var(--fk-gold); color: var(--fk-bg); font-size: .75rem; }
+.co-form { margin-top: 1rem; display: grid; gap: .7rem; grid-template-columns: 1fr 1fr; }
+.co-wide { grid-column: 1 / -1; }
+.co-type { display: flex; gap: 1rem; align-items: center; font-size: .85rem; color: var(--fk-muted); }
+.co-type label, .co-pay label { display: flex; gap: .4rem; align-items: center; color: var(--fk-ink); }
+.co-summary-line { margin-top: .8rem; display: flex; gap: .6rem; align-items: flex-start; font-size: .88rem; }
+.co-summary-line p { flex: 1; }
+.co-tag { font-size: .65rem; padding: .1rem .4rem; border: 1px solid var(--fk-line); color: var(--fk-muted); margin: 0 .3rem; }
+.co-change { color: var(--fk-gold); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; background: transparent; }
+.co-item { margin-top: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.co-item img { width: 6rem; height: 6rem; object-fit: contain; background: var(--fk-soft); }
+.co-item-name { font-size: 1.4rem; }
+.co-qty { display: flex; align-items: center; gap: .6rem; margin-top: .4rem; }
+.co-qty button { width: 1.8rem; height: 1.8rem; border: 1px solid var(--fk-line); color: var(--fk-ink); }
+.co-continue { margin-left: auto; }
+.co-pay { margin-top: 1rem; display: grid; gap: .7rem; }
+.co-price { border: 1px solid var(--fk-line); padding: 1rem; display: grid; gap: .7rem; font-size: .9rem; }
+.co-price h3 { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fk-muted); padding-bottom: .5rem; border-bottom: 1px solid var(--fk-line); }
+.co-price div { display: flex; justify-content: space-between; }
+.co-total { font-weight: 700; padding-top: .6rem; border-top: 1px dashed var(--fk-line); }
