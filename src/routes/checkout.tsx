@@ -65,7 +65,7 @@ function Checkout() {
         <section className="co-step">
           <h2><span>3</span> Payment options</h2>
           {step === 3 && <div className="co-pay">
-            {[['cod', 'Cash on delivery'], ['upi', 'UPI'], ['card', 'Credit / Debit card']].map(([v, l]) => <label key={v}><input type="radio" checked={pay === v} onChange={() => setPay(v)} /> {l}</label>)}
+            {([['cod', 'Cash on delivery'], ['upi', 'UPI'], ['card', 'Credit / Debit card']] as const).map(([v, l]) => <label key={v}><input type="radio" checked={pay === v} onChange={() => setPay(v)} /> {l}</label>)}
             <button type="button" className="fk-buy" onClick={() => { toast.success('Order placed! We will confirm on your mobile.', { icon: <CheckCircle2 /> }); }}>Place order · {usd(price)}</button>
           </div>}
         </section>
