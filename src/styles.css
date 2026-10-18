@@ -1050,3 +1050,4 @@ body:has(.shop-page) .customer-account-access { display: none; }
 .co-price h3 { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fk-muted); padding-bottom: .5rem; border-bottom: 1px solid var(--fk-line); }
 .co-price div { display: flex; justify-content: space-between; }
 .co-total { font-weight: 700; padding-top: .6rem; border-top: 1px dashed var(--fk-line); }
+@media (max-width: 480px) { .shop-brand { font-size: 1rem; letter-spacing: .06em; white-space: nowrap; } .shop-login-link { padding: .5rem .6rem; font-size: .68rem; letter-spacing: .02em; } .co-form { grid-template-columns: 1fr; } }

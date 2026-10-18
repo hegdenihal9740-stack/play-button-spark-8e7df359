@@ -26,7 +26,7 @@ function MobileLogin({ open, onOpenChange }: { open: boolean; onOpenChange: (o: 
     if (!/^[6-9]\d{9}$/.test(mobile)) { toast.error('Enter a valid 10-digit mobile number'); return; }
     if (mode === 'register' && !name.trim()) { toast.error('Enter your name'); return; }
     setBusy(true);
-    const { error } = await supabase.auth.signInWithOtp({ phone, options: { shouldCreateUser: mode === 'register', data: mode === 'register' ? { display_name: name.trim() } : undefined } });
+    const { error } = await supabase.auth.signInWithOtp({ phone, options: mode === 'register' ? { shouldCreateUser: true, data: { display_name: name.trim() } } : { shouldCreateUser: false } });
     setBusy(false);
     if (error) { toast.error(error.message); return; }
     setSent(true); toast.success(`OTP sent to ${phone}`);
